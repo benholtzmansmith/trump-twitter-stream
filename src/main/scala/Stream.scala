@@ -17,9 +17,29 @@ object Stream {
 
     TwitterUtils.
       createStream(streamingContext, None, Seq("Trump")).
-      map(_.getText).
+      map{tweet =>
+        val sentiment = getSentiment(tweet.getText)
+        postToNodeServer(TweetData(text = tweet.getText, sentiment = sentiment.asString))
+      }.
       print()
 
     streamingContext.start()
   }
+
+  def getSentiment(tweet:String):Sentiment = {
+    ???
+  }
+
+  def postToNodeServer(tweetData: TweetData):Unit = {
+    ???
+  }
 }
+
+trait Sentiment {
+  def asString:String = this.getClass.getSimpleName
+}
+case object Positive extends Sentiment
+case object Neutral extends Sentiment
+case object Negative extends Sentiment
+
+case class TweetData(text:String, sentiment:String)
