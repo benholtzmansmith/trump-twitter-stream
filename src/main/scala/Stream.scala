@@ -1,7 +1,7 @@
 package trump.twitter
 
 import org.apache.spark.streaming.twitter.TwitterUtils
-import org.apache.spark.streaming.{Seconds, StreamingContext}
+import org.apache.spark.streaming.{Milliseconds, StreamingContext}
 import org.apache.spark.{SparkConf, SparkContext}
 
 object Stream {
@@ -13,11 +13,13 @@ object Stream {
 
     val sc = new SparkContext(sparkConf)
 
-    val streamingContext = new StreamingContext(sc, Seconds(5))
+    val streamingContext = new StreamingContext(sc, Milliseconds(100))
 
-    TwitterUtils.createStream(streamingContext, None).map(_.getText).print()
+    TwitterUtils.
+      createStream(streamingContext, None, Seq("Trump")).
+      map(_.getText).
+      print()
 
     streamingContext.start()
-
   }
 }

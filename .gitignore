@@ -1,3 +1,6 @@
+bower_components
+website/bower_components
+node_modules/*
 target
 .idea
 twitter4j.properties
