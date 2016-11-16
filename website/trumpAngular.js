@@ -3,9 +3,6 @@ angular.module('trump-streaming', ['btford.socket-io'])
  		return socketFactory();
 	})
 	.controller('TrumpStreaming', function($scope, $http, mySocket) {
-	    $scope.stream = function(path){
-	    	return mySocket.emit("stream","", onSuccess)
-		}
 
 		$scope.streamResults = []
 
@@ -14,8 +11,4 @@ angular.module('trump-streaming', ['btford.socket-io'])
 				$scope.streamResults.push(r)
 			}
 		})
-
-		var onSuccess = function(response) { 
-			console.log(response)
-		}
   	});

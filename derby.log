@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Nov 16 11:31:57 EST 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0158-6dfb-0475-00001bf06000 
+on database directory /Users/benjaminsmith/ProgrammingProjects/trump-twitter-stream/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@5cdafb4d 
+Loaded from file:/usr/local/Cellar/apache-spark/2.0.2/libexec/jars/derby-10.12.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_60-b27
+user.dir=/Users/benjaminsmith/ProgrammingProjects/trump-twitter-stream
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.11.4
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

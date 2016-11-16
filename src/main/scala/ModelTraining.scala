@@ -78,11 +78,11 @@ object ModelTraining {
 
   }
 }
-case class TwitterDataRaw(text:String)
+  case class TwitterDataRaw(text:String)
 
-object TwitterDataRaw {
-  def fromLabel(twitterDataLabel: TwitterDataLabel) = TwitterDataRaw(twitterDataLabel.text)
-}
+  object TwitterDataRaw {
+    def fromLabel(twitterDataLabel: TwitterDataLabel) = TwitterDataRaw(twitterDataLabel.text)
+  }
 
 case class TwitterDataLabel(polarity:Int, text:String)
 
