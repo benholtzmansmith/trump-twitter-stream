@@ -63,8 +63,8 @@ object Stream {
   }
 }
 
-trait Sentiment {
-  def asString:String = this.getClass.getSimpleName
+trait Sentiment extends Product {
+  def asString:String = this.productPrefix
 }
 case object Positive extends Sentiment
 case object Neutral extends Sentiment
