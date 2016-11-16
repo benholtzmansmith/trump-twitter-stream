@@ -1,0 +1,10 @@
+machine:
+  java:
+    version: oraclejdk8
+  hosts:
+    mesos.xdotai-internal.net: 127.0.0.1
+
+
+test:
+  override:
+    - sbt test
