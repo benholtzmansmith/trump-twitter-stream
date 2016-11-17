@@ -1,4 +1,3 @@
-const Twitter = require('twitter');
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
@@ -24,6 +23,8 @@ io.on('connection', function(socket){
   console.log('Connection');
 });
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+var port = process.env.PORT || 3000
+
+http.listen(port, function(){
+  console.log('listening for requests on *:' + port);
 });

@@ -19,6 +19,10 @@ object Stream {
 
     val pathToModel = args(0)
 
+    val nodePort = sys.env.get("PORT").getOrElse("3000")
+
+    logger.error(s"Connecting to node port ${nodePort}")
+
     val sparkConf = new SparkConf().
       setMaster("local[*]").
       setAppName("spark-twitter-stream-example")
@@ -38,9 +42,7 @@ object Stream {
 
         val typedPrediction = TweetDataPredicted.toTypedLabel(prediction)
 
-        logger.error(typedPrediction.asString)
-
-        postToNodeServer(TweetDataPredicted(text = tweet.getText, sentiment = typedPrediction.asString))
+        postToNodeServer(TweetDataPredicted(text = tweet.getText, sentiment = typedPrediction.asString), nodePort)
       }.print()
 
     streamingContext.start()
@@ -48,18 +50,13 @@ object Stream {
     streamingContext.awaitTermination()
   }
 
-  def postToNodeServer(tweetData: TweetDataPredicted):Unit = {
-    logger.error("Posting data to node server")
-
-    val postResult = Http("http://localhost:3000/predict").
+  def postToNodeServer(tweetData: TweetDataPredicted, port:String):Unit = {
+    Http(s"http://localhost:${port}/predict").
       postData(Json.toJson(tweetData).toString()).
       header("Content-Type", "application/json").
       header("Charset", "UTF-8").
       asString.
       code
-
-    if (postResult == 200) logger.error("Successful post")
-    else logger.error("Failed post")
   }
 }
 
