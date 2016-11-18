@@ -1,27 +1,22 @@
 package trump.twitter
 
-import org.slf4j.LoggerFactory
 import org.apache.spark.mllib.classification.LogisticRegressionModel
 import org.apache.spark.streaming.twitter.TwitterUtils
 import org.apache.spark.streaming.{Milliseconds, Seconds, StreamingContext}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.linalg.{Vector, Vectors}
 import play.api.libs.json.{Format, Json}
+import org.apache.log4j.{Level, Logger}
 
 import scalaj.http.Http
 
 object Stream {
-  val logger = LoggerFactory.getLogger(this.getClass)
-
   def main(args: Array[String]) {
 
-    logger.error("Starting streaming application")
 
     val pathToModel = args(0)
 
     val nodePort = sys.env.get("PORT").getOrElse("3000")
-
-    logger.error(s"Connecting to node port ${nodePort}")
 
     val sparkConf = new SparkConf().
       setMaster("local[*]").
@@ -30,6 +25,13 @@ object Stream {
     val sc = new SparkContext(sparkConf)
 
     val streamingContext = new StreamingContext(sc, Seconds(1))
+
+    val rootLogger = Logger.getRootLogger()
+    rootLogger.setLevel(Level.ERROR)
+
+    rootLogger.error("Starting streaming application")
+
+    rootLogger.error(s"Connecting to node port ${nodePort}")
 
     val model = LogisticRegressionModel.load(sc, pathToModel)
 
