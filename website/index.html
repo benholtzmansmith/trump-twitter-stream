@@ -22,7 +22,11 @@
 		</script>
     </head>
 	<body ng-controller="TrumpStreaming">
-		<h1> Sentiment Analysis On Tweets About Trump </h1>
+		<h1 class="col-md-8"> Sentiment Analysis On Tweets About Trump </h1>
+		<div class="col-md-8">
+			The following sentiment analysis predicts the polarity of the text captured in the tweet. It doesn't directly predict whether or not people are directing negative or positive comments towards trump, rather it predicts whether the language being used is negative or positive in the context of a trump tweet.
+		</div>
+		<a class="col-md-8" href="https://github.com/benholtzmansmith/trump-twitter-stream"> Open sourced via github </a>
 		<div ng-repeat="n in streamResults track by $index">
 			<div class="col-md-8">
 				Text: {{n.text}}
