@@ -12,7 +12,7 @@ import scalaj.http.Http
 
 object Stream {
   def main(args: Array[String]) {
-
+    import JavaUtils._
 
     val pathToModel = args(0)
 
@@ -44,7 +44,20 @@ object Stream {
 
         val typedPrediction = TweetDataPredicted.toTypedLabel(prediction)
 
-        postToNodeServer(TweetDataPredicted(text = tweet.getText, sentiment = typedPrediction.asString), nodePort)
+        val tweetId = tweet.getId
+
+        val optGeoLocation = for{
+          latitude <- tweet.getGeoLocation.isNull.map(_.getLatitude)
+          longitude <- tweet.getGeoLocation.isNull.map(_.getLongitude)
+        } yield GeoLocation(latitude = latitude, longitude = longitude)
+
+        postToNodeServer(
+          TweetDataPredicted(
+            text = tweet.getText,
+            sentiment = typedPrediction.asString,
+            geolLocation = optGeoLocation,
+            id = tweetId
+          ), nodePort)
       }.print()
 
     streamingContext.start()
@@ -69,7 +82,11 @@ case object Positive extends Sentiment
 case object Neutral extends Sentiment
 case object Negative extends Sentiment
 
-case class TweetDataPredicted(text:String, sentiment:String)
+case class TweetDataPredicted(
+                               text:String,
+                               sentiment:String,
+                               geolLocation:Option[GeoLocation],
+                               id:Double)
 
 object TweetDataPredicted {
   implicit val format:Format[TweetDataPredicted] = Json.format[TweetDataPredicted]
@@ -80,5 +97,17 @@ object TweetDataPredicted {
       case 1.0 => Neutral
       case 2.0 => Positive
     }
+  }
+}
+
+case class GeoLocation(latitude:Double, longitude:Double)
+
+object GeoLocation {
+  implicit val format:Format[GeoLocation] = Json.format[GeoLocation]
+}
+
+object JavaUtils {
+  implicit class NullToOption[A](a:A) {
+    def isNull:Option[A] = if (a == null) None else Some(a)
   }
 }
