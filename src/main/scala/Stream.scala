@@ -55,7 +55,7 @@ object Stream {
           TweetDataPredicted(
             text = tweet.getText,
             sentiment = typedPrediction.asString,
-            geolLocation = optGeoLocation,
+            geoLocation = optGeoLocation,
             id = tweetId
           ), nodePort)
       }.print()
@@ -85,7 +85,7 @@ case object Negative extends Sentiment
 case class TweetDataPredicted(
                                text:String,
                                sentiment:String,
-                               geolLocation:Option[GeoLocation],
+                               geoLocation:Option[GeoLocation],
                                id:Double)
 
 object TweetDataPredicted {

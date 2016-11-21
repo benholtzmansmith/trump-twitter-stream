@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		file \
 		g++ \
 		gcc \
+		git \
 		imagemagick \
 		libbz2-dev \
 		libc6-dev \
