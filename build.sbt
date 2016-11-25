@@ -9,10 +9,10 @@ fork := true
 val sparkVersion = "2.0.1"
 
 libraryDependencies ++= Seq(
-  "org.apache.spark"       %% "spark-streaming"         % sparkVersion % "provided",
+  "org.apache.spark"       %% "spark-streaming"         % sparkVersion,
   "org.apache.bahir"       %% "spark-streaming-twitter" % sparkVersion,
-  "org.apache.spark"       %% "spark-sql"               % sparkVersion % "provided",
-  "org.apache.spark"       %% "spark-mllib"             % sparkVersion % "provided",
+  "org.apache.spark"       %% "spark-sql"               % sparkVersion,
+  "org.apache.spark"       %% "spark-mllib"             % sparkVersion,
   "com.typesafe.play"      %% "play-json"               % "2.5.9" exclude("com.fasterxml.jackson.core", "jackson-databind"),
   "org.scalaj"             %% "scalaj-http"             % "2.3.0"
 )
