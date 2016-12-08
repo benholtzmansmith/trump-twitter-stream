@@ -1,5 +1,7 @@
 # trump-twitter-stream
 
+viewable at poliai.com
+
 This is a real time streaming service that runs sentiment analysis on tweets with Trump mentions.
 
 I trained a logistic regression model on the tweet polarity data provideded here: http://help.sentiment140.com/for-students/
