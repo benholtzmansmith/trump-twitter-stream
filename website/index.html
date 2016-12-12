@@ -28,42 +28,13 @@
 		</script>
     </head>
 	<body ng-controller="TrumpStreaming">
-		<div class="col-md-6">
-			<h1 class="col-md-8"> Sentiment Analysis On Tweets About Trump </h1>
-			<div class="col-md-8">
-				The following sentiment analysis predicts the polarity of the text captured in the tweet. It doesn't directly predict whether or not people are directing negative or positive comments towards trump, rather it predicts whether the language being used is negative or positive in the context of a trump tweet.
+		<div class="col-md-12">
+			<h1 class="title"> Poliai </h1>
+			<div class="col-md-12">
+				<div class="col-md-6 subheader"> Politics Meets Machine Learning</div>
 			</div>
+			<div class="experiment col-md-9"> Experiemnt 1: Trump Twitter Sentiment Analysis</div>
 			<a class="col-md-8" href="https://github.com/benholtzmansmith/trump-twitter-stream"> Open sourced via github </a>
-		</div>
-		<div class="col-md-6">
-			<ui-gmap-google-map center='map.center' zoom='map.zoom'>
-				<ui-gmap-circle
-						ng-repeat="c in positiveCircles track by c.id"
-						center="c.center"
-						stroke="c.stroke"
-						fill="c.fill"
-						radius="c.radius"
-						visible="c.visible"
-						geodesic="c.geodesic"
-						editable="c.editable"
-						draggable="c.draggable"
-						clickable="c.clickable"
-						control="c.control">
-				</ui-gmap-circle>
-				<ui-gmap-circle
-						ng-repeat="c in negativeCircles track by c.id"
-						center="c.center"
-						stroke="c.stroke"
-						fill="c.fill"
-						radius="c.radius"
-						visible="c.visible"
-						geodesic="c.geodesic"
-						editable="c.editable"
-						draggable="c.draggable"
-						clickable="c.clickable"
-						control="c.control">
-				</ui-gmap-circle>
-			</ui-gmap-google-map>
 		</div>
 		<div ng-repeat="n in streamResults track by $index">
 			<div class="col-md-8">
