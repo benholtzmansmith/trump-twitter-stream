@@ -1,1 +1,29 @@
 .angular-google-map-container { height: 400px; }
+
+.title {
+	padding-top: 8vw;
+	font-size: 22vw;
+}
+
+.header {
+	float: right;
+	font-family: inherit;
+	font-size: 1.6vw;
+	padding-top: 1.2vw;
+	padding-right: 1.2vw;
+	color: lightgray;
+	font-family: Helvetica;
+	letter-spacing: 0.2vw;
+}
+
+.subheader {
+	float: right;
+	font-size: 2vw;
+	padding-bottom: 7vw;
+	letter-spacing: .5vw;
+}
+
+.experiment {
+	font-size: 2vw;
+	letter-spacing: .5vw;
+}

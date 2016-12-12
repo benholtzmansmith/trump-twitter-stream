@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html ng-app="trump-streaming">
 	<head>
-		<title> Trump Streaming </title>
+		<title> poli_ai </title>
+
+		<!-- General scripts -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -13,6 +15,15 @@
 		<script src="/bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
 		<script src="/bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
 		<script src='//maps.googleapis.com/maps/api/js?key=AIzaSyAKN3emSkkE46aLazsPWc-1riUdd_tc5po'></script>
+
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-WW5TTKQ');</script>
+		<!-- End Google Tag Manager -->
+
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -27,43 +38,19 @@
 		  var socket = io();
 		</script>
     </head>
+
 	<body ng-controller="TrumpStreaming">
-		<div class="col-md-6">
-			<h1 class="col-md-8"> Sentiment Analysis On Tweets About Trump </h1>
-			<div class="col-md-8">
-				The following sentiment analysis predicts the polarity of the text captured in the tweet. It doesn't directly predict whether or not people are directing negative or positive comments towards trump, rather it predicts whether the language being used is negative or positive in the context of a trump tweet.
+		<a class="col-md-12 text-right" href="https://github.com/benholtzmansmith/trump-twitter-stream"> Open-Sourced via GitHub </a>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WW5TTKQ"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<div class="col-md-12">
+			<h1 class="title"> poli_ai </h1>
+			<div class="col-md-12">
+				<div class="col-md-6 subheader"> Politics Meets Machine Learning</div>
 			</div>
-			<a class="col-md-8" href="https://github.com/benholtzmansmith/trump-twitter-stream"> Open sourced via github </a>
-		</div>
-		<div class="col-md-6">
-			<ui-gmap-google-map center='map.center' zoom='map.zoom'>
-				<ui-gmap-circle
-						ng-repeat="c in positiveCircles track by c.id"
-						center="c.center"
-						stroke="c.stroke"
-						fill="c.fill"
-						radius="c.radius"
-						visible="c.visible"
-						geodesic="c.geodesic"
-						editable="c.editable"
-						draggable="c.draggable"
-						clickable="c.clickable"
-						control="c.control">
-				</ui-gmap-circle>
-				<ui-gmap-circle
-						ng-repeat="c in negativeCircles track by c.id"
-						center="c.center"
-						stroke="c.stroke"
-						fill="c.fill"
-						radius="c.radius"
-						visible="c.visible"
-						geodesic="c.geodesic"
-						editable="c.editable"
-						draggable="c.draggable"
-						clickable="c.clickable"
-						control="c.control">
-				</ui-gmap-circle>
-			</ui-gmap-google-map>
+			<div class="experiment col-md-9"> Experiment 1: Trump Twitter Sentiment Analysis</div>
 		</div>
 		<div ng-repeat="n in streamResults track by $index">
 			<div class="col-md-8">

@@ -8,3 +8,15 @@ machine:
 test:
   override:
     - sbt test
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - sbt -J-Xmx4G ";assembly"
+      - docker build -t trump-twitter-stream .
+      - docker tag trump-twitter-stream:latest benhsmith/trump-twitter-stream
+      - docker push benhsmith/trump-twitter-stream
+    codedeploy:
+      poliai:
+        deployment_group:production
